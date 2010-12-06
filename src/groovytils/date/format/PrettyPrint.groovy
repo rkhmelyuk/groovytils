@@ -1,6 +1,7 @@
 package groovytils.date.format
 
 import groovytils.date.format.rule.StandardFormatRules
+import java.text.SimpleDateFormat
 
 /**
  * Pretty prints date.
@@ -47,5 +48,6 @@ class PrettyPrint {
             }
         }
 
+        return new SimpleDateFormat(config.dateFormat).format(date)
     }
 }

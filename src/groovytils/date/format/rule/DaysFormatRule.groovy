@@ -32,6 +32,8 @@ class DaysFormatRule implements FormatRule {
                 return '3 weeks ago'
             case 28:
                 return '4 weeks ago'
+            case { it > 28 && it < 31 }:
+                return 'about a month ago'
             case { it < 7 }:
                 def message = new SimpleDateFormat('EEEEE').format(date)
                 if (date.day > (date + units).day) {

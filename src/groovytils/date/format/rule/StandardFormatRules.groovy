@@ -15,5 +15,6 @@ class StandardFormatRules extends FormatRules {
         add new MinutesFormatRule()
         add new HoursFormatRule()
         add new DaysFormatRule()
+        add new MonthsFormatRule()
     }
 }

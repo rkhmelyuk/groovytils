@@ -20,7 +20,7 @@ class MinutesFormatRule implements FormatRule {
     String format(Date date, int units, PrettyPrintConfig config) {
         switch (units) {
             case 0:
-               return 'less than a minute'
+               return 'less than a minute ago'
             case 1:
                return 'a minute ago'
             default:

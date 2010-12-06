@@ -44,11 +44,11 @@ class PrettyPrintTests extends GroovyTestCase {
 
         date = new Date()
         date.hours = date.hours - 2
-        assertEquals '2 hours ago', print.format(date)
+        assertEquals 'about 2 hours ago', print.format(date)
 
         date = new Date()
         date.hours = date.hours - 10
-        assertEquals '10 hours ago', print.format(date)
+        assertEquals 'about 10 hours ago', print.format(date)
     }
 
     void testDays() {
@@ -83,6 +83,22 @@ class PrettyPrintTests extends GroovyTestCase {
         date = new Date(110, 11, 8)
         date.date = date.date - 26
         assertEquals '12 November 2010', print.format(date, today)
+    }
+
+    void testMonths() {
+        date = new Date()
+        assertEquals 'less than a month ago', print.format(date, null, TimePrecision.Months)
+
+        date.month = date.month - 1
+        assertEquals 'about a month ago', print.format(date)
+
+        date = new Date()
+        date.month = date.month - 2
+        assertEquals 'about 2 months ago', print.format(date)
+
+        date = new Date()
+        date.month = date.month - 6
+        assertEquals 'a half year ago', print.format(date)
     }
 
 }
