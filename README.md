@@ -33,7 +33,7 @@ For example:
 ### TimeFormat
 
 Formatting can be extended with implementing `groovytils.date.format.TimeFormat` interface.
-There are 2 implementations:
+There are 2 out-of-box implementations:
 
 * `BasicTimeFormat` - used be default by `PrettyPrint`, tries to be as general as possible.
 * `DetailTimeFormat` - tries to be as specified as possible.
