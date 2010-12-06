@@ -16,5 +16,6 @@ class StandardFormatRules extends FormatRules {
         add new HoursFormatRule()
         add new DaysFormatRule()
         add new MonthsFormatRule()
+        add new YearsFormatRule()
     }
 }

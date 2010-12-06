@@ -8,10 +8,11 @@ enum TimePrecision {
 
     Seconds(1),
     Minutes(60),
-    Hours(3600),
-    Days(3600 * 24),
-    Weeks(3600 * 24 * 7),
-    Months(3600 * 24 * 30)
+    Hours(Minutes.seconds * 60),
+    Days(Hours.seconds * 24),
+    Weeks(Days.seconds * 7),
+    Months(Days.seconds * 30),
+    Years(Days.seconds * 365)
 
     final int seconds
 

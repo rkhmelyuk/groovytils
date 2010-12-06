@@ -11,6 +11,10 @@ class PrettyPrintTests extends GroovyTestCase {
     def print = new PrettyPrint()
     def date = new Date()
 
+    void testNull() {
+        assertEquals '', print.format(null)
+    }
+
     void testJustNow() {
         date.seconds = date.seconds - 5
         assertEquals 'just now', print.format(date, null, TimePrecision.Seconds)
@@ -99,6 +103,18 @@ class PrettyPrintTests extends GroovyTestCase {
         date = new Date()
         date.month = date.month - 6
         assertEquals 'a half year ago', print.format(date)
+    }
+
+    void testYears() {
+        date = new Date()
+        assertEquals 'less than a year ago', print.format(date, null, TimePrecision.Years)
+
+        date.year = date.year - 1
+        assertEquals 'about a year ago', print.format(date)
+
+        date = new Date()
+        date.year = date.year - 2
+        assertEquals 'about 2 years ago', print.format(date)
     }
 
 }
