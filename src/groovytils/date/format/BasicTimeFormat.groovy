@@ -14,13 +14,13 @@ class BasicTimeFormat implements TimeFormat {
         if (units < 30) {
             return "just now"
         }
-        return "few moments ago"
+        return "a few moments ago"
     }
 
     String minutes(Date date, int units, PrettyPrintConfig config) {
         switch (units) {
             case 0:
-                return 'few moments ago'
+                return 'a few moments ago'
             case 1:
                 return 'a minute ago'
             default:
