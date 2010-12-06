@@ -1,5 +1,3 @@
-Copyright (c) 2010 Ruslan Khmelyuk
-
 Groovy Utils
 ------------
 
@@ -37,3 +35,6 @@ There are 2 out-of-box implementations:
 
 * `BasicTimeFormat` - used be default by `PrettyPrint`, tries to be as general as possible.
 * `DetailTimeFormat` - tries to be as specified as possible.
+
+
+Copyright (c) 2010 Ruslan Khmelyuk
