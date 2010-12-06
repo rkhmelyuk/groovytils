@@ -22,7 +22,7 @@ class PrettyPrintTests extends GroovyTestCase {
 
     void testJustNowByDefault() {
         date.seconds = date.seconds - 5
-        assertEquals 'few moments ago', print.format(date)
+        assertEquals 'a few moments ago', print.format(date)
     }
 
     void testPrefix() {
@@ -39,7 +39,7 @@ class PrettyPrintTests extends GroovyTestCase {
 
     void testSeconds() {
         date.seconds = date.seconds - 40
-        assertEquals 'few moments ago', print.format(date, null, TimeUnit.Seconds)
+        assertEquals 'a few moments ago', print.format(date, null, TimeUnit.Seconds)
     }
 
     void testMinutes() {
