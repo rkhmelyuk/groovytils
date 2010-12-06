@@ -25,14 +25,14 @@ For example:
     assertEquals '30 minutes ago', print.format(date)
 
 `PrettyPrint` has 3 constructors:
- * without any parameter - constructs object with `BasicTimeFormat` and `PrettyPrintConfig` with default values.
- * with only 1 parameter - `BasicTimeFormat`
- * with 2 parameters - `BasicTimeFormat` and `PrettyPrintConfig`
+* without any parameter - constructs object with `BasicTimeFormat` and `PrettyPrintConfig` with default values.
+* with only 1 parameter - `BasicTimeFormat`
+* with 2 parameters - `BasicTimeFormat` and `PrettyPrintConfig`
 
 TimeFormat
 ----------
 
 Formatting can be extended with implementing `groovytils.date.format.TimeFormat` interface.
 There are 2 implementations:
- * `BasicTimeFormat` - used be default by `PrettyPrint`, tries to be as general as possible.
- * `DetailTimeFormat` - tries to be as specified as possible.
+* `BasicTimeFormat` - used be default by `PrettyPrint`, tries to be as general as possible.
+* `DetailTimeFormat` - tries to be as specified as possible.
