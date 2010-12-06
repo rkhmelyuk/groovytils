@@ -1,9 +1,9 @@
 Copyright (c) 2010 Ruslan Khmelyuk
 
 Groovy Utils
+------------
 
-PrettyPrint
------------
+### PrettyPrint
 
 Used to build past date representation as it used in Twitter for messages and GitHub for commits.
 For example:
@@ -29,8 +29,7 @@ For example:
 * with only 1 parameter - `BasicTimeFormat`
 * with 2 parameters - `BasicTimeFormat` and `PrettyPrintConfig`
 
-TimeFormat
-----------
+### TimeFormat
 
 Formatting can be extended with implementing `groovytils.date.format.TimeFormat` interface.
 There are 2 implementations:
