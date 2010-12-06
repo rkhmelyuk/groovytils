@@ -8,7 +8,7 @@ package groovytils.date.format
  */
 class PrettyPrintConfig {
 
-    TimePrecision timePrecision = TimePrecision.Minutes
+    TimeUnit timeUnit = TimeUnit.Minutes
 
     boolean showTime = false
     String timeFormat = 'HH:mm'

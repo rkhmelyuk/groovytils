@@ -4,7 +4,7 @@ package groovytils.date.format
  * @author Ruslan Khmelyuk
  * @created 2010-12-05
  */
-enum TimePrecision {
+enum TimeUnit {
 
     Seconds(1, 60),
     Minutes(60, 60),
@@ -16,7 +16,7 @@ enum TimePrecision {
     final int seconds
     final int maxUnits
 
-    TimePrecision(int seconds, int maxUnits) {
+    TimeUnit(int seconds, int maxUnits) {
         this.seconds = seconds
         this.maxUnits = maxUnits
     }
@@ -25,7 +25,7 @@ enum TimePrecision {
         seconds * maxUnits - 1
     }
 
-    static TimePrecision last() {
+    static TimeUnit last() {
         Years
     }
 }

@@ -26,47 +26,48 @@ class PrettyPrint {
         this.format = format
     }
 
-    String format(Date date, Date from = null, TimePrecision precision = null) {
+    String format(Date date, Date from = null, TimeUnit timeUnit = null) {
         if (!date) {
             return ''
         }
 
         // default values
-        precision = precision ?: config.timePrecision
+        timeUnit = timeUnit ?: config.timeUnit
         from = from ?: new Date()
 
         // find difference in seconds
         int diff = (from.time - date.time).intdiv(1000)
 
-        def precisions = (precision..TimePrecision.last())
-        def last = precision
-        for (TimePrecision each : precisions) {
+        def precisions = (timeUnit..TimeUnit.last())
+        def last = timeUnit
+        for (TimeUnit each : precisions) {
             if (diff <= each.maxSeconds) {
                 last = each
                 break
             }
         }
 
-        def result = null
-
+        // calculate units for specified
         int units = diff.intdiv(last.seconds)
+
+        def result
         switch (last) {
-            case TimePrecision.Seconds:
+            case TimeUnit.Seconds:
                 result = format.seconds(date, units, config)
                 break
-            case TimePrecision.Minutes:
+            case TimeUnit.Minutes:
                 result = format.minutes(date, units, config)
                 break
-            case TimePrecision.Hours:
+            case TimeUnit.Hours:
                 result = format.hours(date, units, config)
                 break
-            case TimePrecision.Days:
+            case TimeUnit.Days:
                 result = format.days(date, units, config)
                 break
-            case TimePrecision.Months:
+            case TimeUnit.Months:
                 result = format.months(date, units, config)
                 break
-            case TimePrecision.Years:
+            case TimeUnit.Years:
                 result = format.years(date, units, config)
                 break
             default:
