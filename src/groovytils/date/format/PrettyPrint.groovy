@@ -1,6 +1,5 @@
 package groovytils.date.format
 
-import groovytils.date.format.rule.StandardFormatRules
 import java.text.SimpleDateFormat
 
 /**
@@ -11,20 +10,20 @@ import java.text.SimpleDateFormat
  */
 class PrettyPrint {
 
-    FormatRules formatRules
-    PrettyPrintConfig config
+    final TimeFormat format
+    final PrettyPrintConfig config
 
     PrettyPrint() {
-        this(new StandardFormatRules(), new PrettyPrintConfig())
+        this(new BasicTimeFormat(), new PrettyPrintConfig())
     }
 
-    PrettyPrint(FormatRules formatRules) {
-        this(formatRules, new PrettyPrintConfig())
+    PrettyPrint(TimeFormat format) {
+        this(format, new PrettyPrintConfig())
     }
 
-    PrettyPrint(FormatRules formatRules, PrettyPrintConfig config) {
+    PrettyPrint(TimeFormat format, PrettyPrintConfig config) {
         this.config = config
-        this.formatRules = formatRules
+        this.format = format
     }
 
     String format(Date date, Date from = null, TimePrecision precision = null) {
@@ -39,15 +38,48 @@ class PrettyPrint {
         // find difference in seconds
         int diff = (from.time - date.time).intdiv(1000)
 
-        for (FormatRule rule in formatRules.rules) {
-            if (rule.inSeconds() >= precision.seconds) {
-                if (rule.supports(diff)) {
-                    int units = diff.intdiv(rule.inSeconds())
-                    return rule.format(date, units, config)
-                }
+        def precisions = (precision..TimePrecision.last())
+        def last = precision
+        for (TimePrecision each : precisions) {
+            if (diff <= each.maxSeconds) {
+                last = each
+                break
             }
         }
 
-        return new SimpleDateFormat(config.dateFormat).format(date)
+        def result = null
+
+        int units = diff.intdiv(last.seconds)
+        switch (last) {
+            case TimePrecision.Seconds:
+                result = format.seconds(date, units, config)
+                break
+            case TimePrecision.Minutes:
+                result = format.minutes(date, units, config)
+                break
+            case TimePrecision.Hours:
+                result = format.hours(date, units, config)
+                break
+            case TimePrecision.Days:
+                result = format.days(date, units, config)
+                break
+            case TimePrecision.Months:
+                result = format.months(date, units, config)
+                break
+            case TimePrecision.Years:
+                result = format.years(date, units, config)
+                break
+            default:
+                result = new SimpleDateFormat(config.dateFormat).format(date)
+        }
+
+        if (config.prefix) {
+            result = "$config.prefix $result"
+        }
+        if (config.suffix) {
+            result = "$result $config.suffix"
+        }
+
+        return result
     }
 }

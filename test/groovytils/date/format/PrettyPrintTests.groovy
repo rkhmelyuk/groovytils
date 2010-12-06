@@ -20,9 +20,26 @@ class PrettyPrintTests extends GroovyTestCase {
         assertEquals 'just now', print.format(date, null, TimePrecision.Seconds)
     }
 
+    void testJustNowByDefault() {
+        date.seconds = date.seconds - 5
+        assertEquals 'few moments ago', print.format(date)
+    }
+
+    void testPrefix() {
+        date.seconds = date.seconds - 5
+        print.config.prefix = 'start'
+        assertEquals 'start just now', print.format(date, null, TimePrecision.Seconds)
+    }
+
+    void testSuffix() {
+        date.seconds = date.seconds - 5
+        print.config.suffix = 'from now'
+        assertEquals 'just now from now', print.format(date, null, TimePrecision.Seconds)
+    }
+
     void testSeconds() {
         date.seconds = date.seconds - 40
-        assertEquals 'less than a minute ago', print.format(date, null, TimePrecision.Seconds)
+        assertEquals 'few moments ago', print.format(date, null, TimePrecision.Seconds)
     }
 
     void testMinutes() {
@@ -44,7 +61,7 @@ class PrettyPrintTests extends GroovyTestCase {
         assertEquals 'less than an hour ago', print.format(date, null, TimePrecision.Hours)
 
         date.hours = date.hours - 1
-        assertEquals 'an hour ago', print.format(date)
+        assertEquals 'about an hour ago', print.format(date)
 
         date = new Date()
         date.hours = date.hours - 2
@@ -66,7 +83,7 @@ class PrettyPrintTests extends GroovyTestCase {
 
         date = new Date()
         date.date = date.date - 7
-        assertEquals 'week ago', print.format(date)
+        assertEquals 'about a week ago', print.format(date)
 
         date = new Date()
         date.date = date.date - 14
@@ -84,9 +101,10 @@ class PrettyPrintTests extends GroovyTestCase {
         date.date = date.date - 10
         assertEquals '10 days ago', print.format(date)
 
-        date = new Date(110, 11, 8)
+        date = new Date(110, 11, 8, 22, 10, 12)
         date.date = date.date - 26
-        assertEquals '12 November 2010', print.format(date, today)
+        print.config.showTime = true
+        assertEquals '12 November 2010, 22:10', print.format(date, today)
     }
 
     void testMonths() {

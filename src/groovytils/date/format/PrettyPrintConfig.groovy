@@ -14,4 +14,7 @@ class PrettyPrintConfig {
     String timeFormat = 'HH:mm'
     String dateFormat = 'd MMMMM yyyy'
 
+    String suffix
+    String prefix
+
 }
