@@ -7,6 +7,8 @@
 
 .idea/
 .internal/
+.gradle/
+build/
 target/
 bin/
 out/
